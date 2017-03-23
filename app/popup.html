@@ -4,18 +4,28 @@
     <meta charset="utf-8">
     <!-- build:css styles/popup-vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/main.css -->
     <link href="styles/main.css" rel="stylesheet">
-    <link href="styles/tachyons.min.css" rel="stylesheet">
+    <link href="assets/tachyons.min.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
     <h1>'Allo, 'Allo!</h1>
 
+    <!-- Accent-colored raised button with ripple -->
+    <button id="settings" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Settings
+    </button>
+    <button id="history" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      History
+    </button>
+
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/material-design-lite/material.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
