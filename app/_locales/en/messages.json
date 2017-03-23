@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "productivo",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Chrome extension for managing productivity",
+    "description": "The description of the application"
+  }
+}
