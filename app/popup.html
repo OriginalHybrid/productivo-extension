@@ -5,27 +5,30 @@
     <!-- build:css styles/popup-vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
+    <link rel="stylesheet" href="bower_components/flatpickr/dist/flatpickr.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/main.css -->
     <link href="styles/main.css" rel="stylesheet">
     <link href="assets/tachyons.min.css" rel="stylesheet">
+    <link href="assets/css/uikit.min.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
     <h1>'Allo, 'Allo!</h1>
 
     <!-- Accent-colored raised button with ripple -->
-    <button id="settings" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      Settings
-    </button>
-    <button id="history" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      History
-    </button>
+
+    <p uk-margin>
+      <button id="history" class="uk-button uk-button-default">History</button>
+      <button id="settings" class="uk-button uk-button-default">Settings</button>
+    </p>
 
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/material-design-lite/material.min.js"></script>
+    <script src="bower_components/flatpickr/dist/flatpickr.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
