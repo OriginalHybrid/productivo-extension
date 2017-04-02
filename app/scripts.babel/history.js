@@ -1,31 +1,43 @@
-// const Flatpickr = require('flatpickr');
+// 'use strict';
+import {parseQueryString} from './util'
 
-// For the datepicker
-// let fromDate = document.getElementById('fromDate');
-// new Flatpickr(fromDate, {});
+/* Variables */
+let start;
+let end;
 
+/* Initializing the Datepicker */
 flatpickr('.from-date', {});
-// $('.from-date').flatpickr({});
-console.log('let\'s get the history');
 
 
-chrome.history.search({
-  text: '',
-  maxResults: 100
-}, (histories) => {
-  console.log('histories',histories);
-});
-console.log(chrome.sessions.MAX_SESSION_RESULTS);
-chrome.sessions.getRecentlyClosed((sessions)=>console.log(sessions,'sessions'));
+
+
+/* Getting the history */
+function getHistory(start, end) {
+  console.log('let\'s get the history');
+  chrome.history.search({
+    text: '',
+    startTime: start,
+    endTime: end,
+    maxResults: 100
+  }, (histories) => {
+    console.log('histories',histories);
+  });
+
+  console.log(chrome.sessions.MAX_SESSION_RESULTS);
+  chrome.sessions.getRecentlyClosed((sessions)=>console.log(sessions,'sessions'));
+}
+
 
 $(function () {
   let queryObj = parseQueryString();
 
   if('start' in queryObj && 'end' in queryObj) {
-    var start = moment(queryObj.start, SHOW_FORMAT)
-    var end = moment(queryObj.end, SHOW_FORMAT)
+    start = moment(queryObj.start, SHOW_FORMAT)
+    end = moment(queryObj.end, SHOW_FORMAT)
   } else {
-    var start = moment().subtract('1','days')
-    var end = moment()
+    start = moment().subtract('1','days')
+    end = moment()
   }
+
+  getHistory(start, end)
 });
