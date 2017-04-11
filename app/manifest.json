@@ -30,18 +30,20 @@
     "topSites",
     "storage",
     "webRequestBlocking",
-    "sessions"
+    "sessions",
+    "*://*/*",
+    "unlimitedStorage"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-      "chrome_url_overrides": {
+  "chrome_url_overrides": {
         "newtab": "override.html"
-    },
-    "content_scripts": [
-        {
-            "js": ["assets/js/jquery.min.js", "scripts/contentscript.js"],
-            "matches": ["*://*/*"]
-        }
-    ],
+  },
+  "content_scripts": [
+    {
+      "js": ["assets/js/jquery.min.js", "scripts/contentscript.js"],
+      "matches": ["*://*/*"]
+    }
+  ],
   "browser_action": {
     "default_icon": {
       "19": "images/icon-19.png",
