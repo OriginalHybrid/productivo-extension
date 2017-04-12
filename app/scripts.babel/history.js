@@ -65,22 +65,101 @@ function showHistory(histories) {
 
 }
 
+var mychartt;
 /* For the charts */
 function initializeChartWithData() {
-  var ctx = document.getElementById('myChart');
+  // var chartData = [];
+  // var options = {
+  //   animation: false,
+  //   segmentShowStroke: false
+  // };
+  // var ctx = $('#myChart').get(0).getContext('2d');
+  //
+  // var time_units = 'minutes';
+  //
+  // chrome.storage.local.get('trackr', function(data) {
+  //   $.each(data.trackr, function(i, v) {
+  //     if (v.time !== 0) {
+  //       var color = $c.rand('hex');
+  //       var backgroundColor = $c.complement(color);
+  //       // http://stackoverflow.com/a/6134070/1042093
+  //       var value = v.time * 5;
+  //       switch (time_units) {
+  //         case 'seconds':
+  //           break;
+  //         case 'minutes':
+  //           value = value / 60;
+  //           break;
+  //         case 'hours':
+  //           value = value / 3600;
+  //           break;
+  //       }
+  //       value = parseFloat(parseFloat(Math.round(value * 100) / 100).toFixed(2));
+  //       if (value === 0) return;
+  //       chartData.push({
+  //         value: value,
+  //         color: color,
+  //         highlight: backgroundColor,
+  //         label: v.title
+  //       });
+  //     }
+  //   });
+  //
+  // });
+  // // var chart = new Chart(ctx).Doughnut(chartData, options);
+  //
+  // var chart = new Chart(ctx,{
+  //   type: 'doughnut',
+  //   data: chartData,
+  //   options: options
+  // });
 
+
+
+  // var ctx = document.getElementById('myChart');
+  var ctx = $('#myChart').get(0).getContext('2d');
+
+  let labels = [];
+  let chartData = [];
+  let bg = [];
+  let hoverbg = [];
   chrome.storage.local.get('trackr', function(data) {
     console.log('data from storage for the sake of charts', data.trackr);
+
+    let records = data.trackr;
+
+    records.length = 4;
+
+    records.forEach((record) => {
+      labels.push(record.title.substr(4));
+      chartData.push(record.time);
+
+      var color = $c.rand('hex');
+      bg.push(color);
+      hoverbg.push($c.complement(color));
+    })
+    console.log('lables',labels,'data',chartData,'bg',bg,'hover',hoverbg);
+
   });
   var data = {
+    labels: labels,
+    datasets: [
+      {
+        data: chartData,
+        backgroundColor: bg,
+        hoverBackgroundColor: hoverbg
+      }]
+  };
+
+  data = {
     labels: [
-      "Red",
-      "Blue",
-      "Yellow"
+      "google.com",
+      "facebook.com",
+      "twitter.com"
     ],
     datasets: [
       {
-        data: [300, 50, 100],
+        data: [1,2,4],
         backgroundColor: [
           "#FF6384",
           "#36A2EB",
@@ -91,15 +170,53 @@ function initializeChartWithData() {
           "#36A2EB",
           "#FFCE56"
         ]
-      }]
-  };
+
+      }
+
+    ]
+  }
 
 
-  var myPieChart = new Chart(ctx,{
-    type: 'pie',
+  var myChart = new Chart(ctx,{
+    type: 'doughnut',
     data: data,
-    options: {}
+    options: {
+      animation:{
+        animateScale:true
+      }
+    }
   });
+
+  // var data = {
+  //   labels: [
+  //     "Red",
+  //     "Blue",
+  //     "Yellow"
+  //   ],
+  //   datasets: [
+  //     {
+  //       data: [300, 50, 100],
+  //       backgroundColor: [
+  //         "#FF6384",
+  //         "#36A2EB",
+  //         "#FFCE56"
+  //       ],
+  //       hoverBackgroundColor: [
+  //         "#FF6384",
+  //         "#36A2EB",
+  //         "#FFCE56"
+  //       ]
+  //     }]
+  // };
+  //
+  //
+  // var myDoughnutChart = new Chart(ctx, {
+  //   type: 'doughnut',
+  //   data: data,
+  //   options: {}
+  // });
+
+
 }
 
 $(function () {

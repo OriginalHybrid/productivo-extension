@@ -24,3 +24,10 @@ historyEl.addEventListener('click', () => {
     url: 'history.html'
   })
 });
+
+let block = document.getElementById('block');
+block.addEventListener('click', () => {
+  chrome.tabs.create({
+    url: 'block-sites.html'
+  })
+});

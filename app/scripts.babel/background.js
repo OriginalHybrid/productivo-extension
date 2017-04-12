@@ -155,3 +155,49 @@ getCurrentTab();
 chrome.tabs.onUpdated.addListener(getCurrentTab);
 chrome.tabs.onActivated.addListener(getCurrentTab);
 
+
+
+/* For the Site blocking */
+
+var arrBlockedURLS;
+
+var blockURLS = function(details)
+{
+
+  chrome.storage.sync.get(
+    {
+      blockedSites: 'facebook.com\nfacebook.net\nplus.google.com\ntwitter.com'
+    }
+    , function(items)
+    {
+      arrBlockedURLS = items.blockedSites.split('\n');
+    });
+
+  var url = details.url.toUpperCase();
+
+  for (var i in arrBlockedURLS)
+  {
+    if(url.indexOf(arrBlockedURLS[i].toUpperCase()) != -1)
+    {
+      console.log('Site Blocker blocked: ' + url + ' matched ' + arrBlockedURLS[i].toUpperCase());
+      // chrome.tabs.update({url: chrome.extension.getURL(`warning.html?site=${arrBlockedURLS[i]}`)});
+      // window.location = chrome.extension.getURL("warning.html");
+      return {cancel: true};
+    }
+  }
+
+  return {cancel: false};
+
+}
+
+chrome.webRequest.onBeforeRequest.addListener(
+  blockURLS,
+  // filters
+  {
+    urls: [
+      "<all_urls>"
+    ]
+  },
+  // extraInfoSpec
+  ["blocking"]);
+
