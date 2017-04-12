@@ -7,8 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="assets/css/uikit.min.css" rel="stylesheet">
   <link rel="stylesheet" href="bower_components/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="styles/main.css">
 
-  <title>History</title>
+  <title>Your Productivity</title>
 </head>
 <body>
   <!--<h1>history baby</h1>-->
@@ -16,27 +17,7 @@
   <nav class="uk-navbar-container uk-margin" uk-navbar>
     <div class="uk-navbar-center">
 
-      <!--<div class="uk-navbar-center-left"><div>-->
-        <!--<ul class="uk-navbar-nav">-->
-          <!--<li class="uk-active"><a href="#">Active</a></li>-->
-          <!--<li>-->
-            <!--<a href="#">Parent</a>-->
-            <!--<div class="uk-navbar-dropdown">-->
-              <!--<ul class="uk-nav uk-navbar-dropdown-nav">-->
-                <!--<li class="uk-active"><a href="#">Active</a></li>-->
-                <!--<li><a href="#">Item</a></li>-->
-                <!--<li><a href="#">Item</a></li>-->
-              <!--</ul>-->
-            <!--</div>-->
-          <!--</li>-->
-        <!--</ul>-->
-      <!--</div></div>-->
-      <a class="uk-navbar-item uk-logo" href="#">Productivo</a>
-      <!--<div class="uk-navbar-center-right"><div>-->
-        <!--<ul class="uk-navbar-nav">-->
-          <!--<li><a href="#">Item</a></li>-->
-        <!--</ul>-->
-      <!--</div></div>-->
+      <a class="uk-navbar-item uk-logo" style="font-family: 'Roboto Condensed', sans-serif;" href="#">Productivo</a>
 
     </div>
   </nav>
@@ -59,14 +40,17 @@
       </div>
 
     </div>
-    <!--<div class="uk-column-1-3 uk-align-right">-->
+  </div>
 
-    <!--</div>-->
+  <div class="uk-container">
+    <div class="productive-chart">
+      <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
   </div>
 
   <!-- Table displaying history -->
   <div class="uk-container">
-    <h3 class="uk-heading-line uk-text-center" id="date-heading"><span>Showing results from </span></h3>
+    <h3 class="uk-heading-line uk-text-center" id="date-heading"><span>Showing your productivity </span></h3>
     <div class="uk-overflow-auto">
       <table class="uk-table uk-table-hover uk-table-middle" id="history-table">
         <thead>
@@ -74,7 +58,7 @@
           <th class="uk-table-shrink"></th>
           <th class="uk-table-expand">Website</th>
           <th class="uk-width-small">Duration</th>
-          <th class="uk-table-shrink uk-text-nowrap">No of times Visited</th>
+          <!--<th class="uk-table-shrink uk-text-nowrap">No of times Visited</th>-->
         </tr>
         </thead>
         <tbody>
@@ -109,6 +93,7 @@
   <script src="bower_components/moment/min/moment.min.js"></script>
   <script src="bower_components/underscore/underscore-min.js"></script>
   <!--<script type="module" src="scripts/util.js"></script>-->
+  <script src="bower_components/chart.js/dist/Chart.min.js"></script>
   <script src="scripts/history.js"></script>
 </body>
 </html>

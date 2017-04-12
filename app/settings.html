@@ -5,10 +5,60 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="assets/css/uikit.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/main.css">
+
   <title>Settings</title>
 </head>
 <body>
 
-  <h1>Settings Page buddy</h1>
+<nav class="uk-navbar-container uk-margin" uk-navbar>
+  <div class="uk-navbar-center">
+
+    <a class="uk-navbar-item uk-logo uk-margin-auto" style="font-family: 'Roboto Condensed', sans-serif;" href="#">Productivo Settings</a>
+
+  </div>
+</nav>
+
+<div class="uk-container-small uk-margin-auto">
+  <div class="uk-card uk-card-default uk-card-hover uk-card-large uk-card-body">
+    <h3 class="uk-card-title">Settings</h3>
+
+    <form class="uk-form-stacked">
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text">Time before which the browser would be inactive</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" id="form-stacked-text" value="5" type="text" placeholder="Enter time in seconds">
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-select">Date Format</label>
+        <div class="uk-form-controls">
+          <select class="uk-select" id="form-stacked-select">
+            <option>DD-MM-YYYY</option>
+            <option>MM-DD-YYYY</option>
+            <option>DD/MM/YYYY</option>
+            <option>MM/DD/YYYY</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <div class="uk-form-label">Radio</div>
+        <div class="uk-form-controls">
+          <label><input class="uk-radio" type="radio" name="radio1"> Option 01</label><br>
+          <label><input class="uk-radio" type="radio" name="radio1"> Option 02</label>
+        </div>
+      </div>
+
+    </form>
+
+    <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom">Submit</button>
+
+  </div>
+</div>
 </body>
 </html>

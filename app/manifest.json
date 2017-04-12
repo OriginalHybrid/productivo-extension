@@ -19,13 +19,10 @@
     "http://*/*",
     "https://*/*",
     "background",
-    "bookmarks",
     "cookies",
     "*://*.google.com/",
-    "debugger",
     "history",
     "idle",
-    "management",
     "tabs",
     "topSites",
     "storage",
@@ -35,9 +32,6 @@
     "unlimitedStorage"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "chrome_url_overrides": {
-        "newtab": "override.html"
-  },
   "content_scripts": [
     {
       "js": ["assets/js/jquery.min.js", "scripts/contentscript.js"],

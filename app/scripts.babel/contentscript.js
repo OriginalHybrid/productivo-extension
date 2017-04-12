@@ -1,8 +1,20 @@
 // Code that runs in every page
 
 var timeoutID;
+var hostname;
 
-console.log('I\'m in content script')
+function isYoutube() {
+  let host = new URL(window.location);
+  let hostname = host.hostname;
+  console.log('host', hostname);
+  if(hostname === 'www.youtube.com') {
+    console.log('I\'m on youtube now');
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function setup() {
     window.addEventListener('mousemove', resetTimer, false);
     window.addEventListener('mousedown', resetTimer, false);
@@ -12,29 +24,35 @@ function setup() {
     window.addEventListener('touchmove', resetTimer, false);
     window.addEventListener('pointermove', resetTimer, false);
 
+
     startTimer();
 }
 
 setup();
 
 function startTimer() {
-     console.log('starting the timer');
-    timeoutID = window.setTimeout(goInactive, 5000);
+  console.log('starting timer');
+  timeoutID = window.setTimeout(goInactive, 5000);
 }
 
-function resetTimer(e) {
-    console.log('clearing the timeout')
-    window.clearTimeout(timeoutID);
-    goActive();
+function resetTimer() {
+  console.log('resetting timer');
+  window.clearTimeout(timeoutID);
+  goActive();
 }
 
 function goInactive() {
-     console.log('Im inactive now')
+  let player =  document.getElementById('movie_player');
+  if(player !== undefined && (player.classList.value.split(" ").indexOf('playing-mode') > -1)) {
+    timeoutID = window.setTimeout(goInactive, 5000);
+    return;
+  }
+  console.log('going inactive');
     chrome.runtime.sendMessage({ userActive: false }, (response) => {});
 }
 
 function goActive() {
-    console.log('Im active now')
+  console.log('going active');
     chrome.runtime.sendMessage({ userActive: true });
     startTimer();
 }

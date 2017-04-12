@@ -1,4 +1,12 @@
-$padding: 20px;
-body {
-  padding: $padding;
+$padding: 15px;
+.popup {
+  padding: 15px;
+}
+.popup-heading {
+  text-align: center;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.productive-chart {
+  max-width: 300px;
+  max-height: 300px;
 }

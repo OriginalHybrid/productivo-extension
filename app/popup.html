@@ -14,15 +14,22 @@
     <link href="assets/css/uikit.min.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
-  <body>
-    <h1>'Allo, 'Allo!</h1>
+  <body class="popup">
+    <h1 class="popup-heading">Productivo</h1>
 
     <!-- Accent-colored raised button with ripple -->
 
-    <p uk-margin>
-      <button id="history" class="uk-button uk-button-default">History</button>
-      <button id="settings" class="uk-button uk-button-default">Settings</button>
-    </p>
+    <div class="uk-margin">
+      <div class="overview-button uk-margin-bottom">
+        <button id="history" class="uk-button uk-button-primary uk-display-block uk-margin-auto">Overview</button>
+      </div>
+      <div class="settings-button uk-margin-bottom">
+        <button id="block" class="uk-button uk-button-danger uk-display-block uk-margin-auto">Block Sites</button>
+      </div>
+      <div class="settings-button uk-margin-bottom">
+        <button id="settings" class="uk-button uk-button-danger uk-display-block uk-margin-auto">Settings</button>
+      </div>
+    </div>
 
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->

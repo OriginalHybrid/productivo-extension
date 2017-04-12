@@ -51,7 +51,6 @@ function showHistory(histories) {
     }
   });
 
-
   histories.forEach((visit) => {
     var row = [
       `<tr>`,
@@ -64,39 +63,43 @@ function showHistory(histories) {
     rank.append(row);
   })
 
-  // for(var i=0; i<urlsFreq.length; i++) {
-  //   var row = [
-  //     `<tr>`,
-  //     `<td>${i+1}</td>`,
-  //     `<td>${urlsFreq[i][1]}</td>`,
-  //     `<td>${urlsFreq[i][0]}</td>`,
-  //     `</tr>`,
-  //   ].join();
-  //   rank.append(row)
-  // }
-  //
-  //
-  // histories = _.map(histories, (history) => {
-  //   return {
-  //     'visitDay': moment(history.lastVisitTime).startOf('day').valueOf(),
-  //     'title': history.title || history.url,
-  //     'url': history.url
-  //   }
-  // });
-  // console.log('mapping histories fro visitday title and url', histories);
-  // var dailyVisits = _.groupBy(histories, 'visitDay');
-  // console.log('after grouping by visit day', dailyVisits);
-  //
-  // var dailyVisitsArr = [];
-  // for (visitDay in dailyVisits) {
-  //   dailyVisitsArr.push([parseInt(visitDay), dailyVisits[visitDay].length])
-  // }
-  // console.log('dalyvisits array', dailyVisitsArr);
-  // var urlsFreq = _.groupBy(histories, 'title');
-  // var urlsFreqArr = [];
-  // for (title in urlsFreq) {
-  //   urlsFreqArr.push([title, urlsFreq[title].length])
-  // }
+}
+
+/* For the charts */
+function initializeChartWithData() {
+  var ctx = document.getElementById('myChart');
+
+  chrome.storage.local.get('trackr', function(data) {
+    console.log('data from storage for the sake of charts', data.trackr);
+  });
+  var data = {
+    labels: [
+      "Red",
+      "Blue",
+      "Yellow"
+    ],
+    datasets: [
+      {
+        data: [300, 50, 100],
+        backgroundColor: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56"
+        ],
+        hoverBackgroundColor: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56"
+        ]
+      }]
+  };
+
+
+  var myPieChart = new Chart(ctx,{
+    type: 'pie',
+    data: data,
+    options: {}
+  });
 }
 
 $(function () {
@@ -111,7 +114,30 @@ $(function () {
   }
 
   let dateHeading = document.getElementById('date-heading');
-  dateHeading.innerText += ` ${moment(start).format('Dd MMM YY')} to ${moment(end).format('Dd MMM YY')}`;
+  // dateHeading.innerText += ` ${moment(start).format('Dd MMM YY')} to ${moment(end).format('Dd MMM YY')}`;
 
-  getHistory(start, end)
+  // getHistory(start, end);
+
+
+  chrome.storage.local.get('trackr', function(data) {
+    console.log('data from storage', data.trackr);
+
+    var sites = data.trackr;
+
+    var rank = $('#history-table');
+
+    sites.forEach((visit) => {
+      var row = [
+        `<tr>`,
+        `<td><img class='uk-preserve-width uk-border-circle' src='https://www.google.com/s2/favicons?domain=${visit.title}' width='20' alt=''></td>`,
+        `<td class='uk-table-link uk-text-truncate'><a class='uk-link-reset' href=''>${visit.title}</a></td>`,
+        `<td class='uk-text-truncate'>${visit.time} minutes</td>`,
+        // `<td class='uk-text-nowrap'>${visit.visitCount}</td>`,
+        `</tr>`,
+      ].join();
+      rank.append(row);
+    })
+  })
+
+  initializeChartWithData();
 });
